@@ -7,6 +7,7 @@ var _ = require('lodash'),
   P = require('bluebird'),
   presentCollaborator = require("./collaborator"),
   presentUser = require("./user"),
+  spdxIsOSI = require('spdx-is-osi'),
   spdxToHTML = require('spdx-to-html'),
   npd = require('normalize-package-data'),
   url = require('url'),
@@ -34,6 +35,7 @@ module.exports = function(pkg) {
     if (!valid.validForOldPackages) {
       delete pkg.license;
     } else {
+      pkg.osi = spdxIsOSI(pkg.license);
       if (valid.spdx) {
         pkg.license = {links: spdxToHTML(pkg.license)};
       } else if (valid.inFile) {

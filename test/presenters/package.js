@@ -215,6 +215,7 @@ describe("SPDX license links", function () {
       expect(pkg.license.links).to.include('MIT');
       expect(pkg.license.links).to.include('BSD-2-Clause');
       expect(pkg.license.links).to.include('spdx.org');
+      expect(pkg.osi).to.be.true();
       done();
     });
   });
